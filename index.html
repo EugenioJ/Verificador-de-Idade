@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Verificador de Idade</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        
+
+
+        }
+        .container{
+            margin: 0 auto;
+            width: 60vw;
+        }
+        header div, main{
+            align-items: center;
+            display: flex;
+        }
+        picture{
+            display: flex;
+            justify-content: center;
+        }
+        #idadeExib{
+            font-size: 70px;
+            text-align: center;
+            margin-top: 25px;
+           
+        }
+        .seletorSexo{
+            display: flex;
+            flex-direction: row;
+        
+        }
+        .row{
+            flex-direction: row;
+            display: flex;
+        }
+        .col{
+            flex-direction: column;
+            display: flex;
+        }
+        h1, nav{
+            margin: 15px 0px;
+        }
+        nav div, .seletorSexo h2{
+            margin: 5px 5px 5px 0px;
+        }
+        nav input{
+            height: 35px;
+            text-align: center;
+            width:250px;
+            border-radius: 5px;
+            border: 1px rgb(182, 181, 181) solid
+        }
+        nav, .seletorSexo, .submit, header div{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        
+        }
+        .seletorSexo div div{
+            padding: 15px
+        }
+        button[type=submit]{
+            width: 350px;
+            height: 35px;
+        }
+        input[type=radio]{
+            margin-right: 5px;
+        }
+        img{
+            width: 400px;
+            min-height: 350px;
+        }
+    
+    </style>
+    
+</head>
+<body>
+    
+    <header>
+        <div class="container">
+            <h1>Verificador de Idade</h1>
+        </div>
+    </header>  
+    <main class="col">
+        <section>
+            <picture class="container">
+                <img src="assets/images/masculino/avatar.png">
+            </picture>
+            
+        </section>
+        <section class="container">
+            <nav class="col">
+                <div>
+                    <h2>Ano de Nascimento</h2>
+                </div>
+                <div>
+                    <input id="idade" placeholder="Digite Aqui">
+                </div>
+            </nav>
+            <div class="seletorSexo col">
+                <h2>SEXO</h2>
+                <div class="row">
+                    <div>
+                        <input id="masc" ='opMasc()' type="radio" name="sexo" value="masculino"><label>Masculino</label>
+                    </div>
+                    <div>
+                        <input id="femin" type="radio" name="sexo" value="feminino"><label>Feminino</label>
+                    </div>
+                </div>  
+            </div>
+            <div class="submit">
+                <button onclick="idadeFun(), MudarIMG(idadeVar)" type="submit">Verificar</button>
+            </div>
+            <p id="idadeExib"></p>
+        </section>
+    </main>
+    <div>
+
+    </div>
+    <script>
+        document.getElementById("masc").addEventListener('click', opMasc);
+        document.getElementById("femin").addEventListener("click", opFemin);
+        imgKidF = 'assets/images/feminino/kidF.jpg'
+        imgKidM = 'assets/images/masculino/kidM.jpg'
+        imgAdF  = 'assets/images/feminino/imgAdF.png'
+        imgAdM  = 'assets/images/masculino/imgAdM.png'
+        imgAdultoF= 'assets/images/feminino/imgAdultoF.png'
+        imgAdultoM= 'assets/images/masculino/imgAdultoM.jpg'
+        imgIdosoF = 'assets/images/feminino/imgIdosoF.jpg'
+        imgIdosoM = 'assets/images/masculino/imgIdosoM.png'
+        imgMasculina = 'assets/images/masculino/avatar.png'
+        imgFeminina = 'assets/images/feminino/avatar-woman.jpg'
+        
+        function opMasc(){
+            document.getElementsByTagName("img")[0].src = imgMasculina
+            op = 'masc'
+        }
+        function opFemin(){
+            document.getElementsByTagName("img")[0].src = imgFeminina
+            op = 'femin'
+        }
+        function idadeFun(){
+            idadeVar = document.getElementById("idade").value
+            idadeVar = Number(idadeVar)
+            idadeVar = 2021 - idadeVar 
+                if (idadeVar > 100 | idadeVar <= 0){
+                   window.alert("tem alguma coisa errada, você tem mesmo "+idadeVar+" anos?")
+                   return idadeVar
+                }
+                else{
+                    var exib = document.getElementById("idadeExib")
+                    console.log(exib)
+                    exib.innerHTML = idadeVar
+                    console.log(exib)
+                    return idadeVar
+                }
+        }
+     
+        function MudarIMG(idad){
+            if(idad < 12 ) {
+                if (op == 'masc'){
+                 document.getElementsByTagName("img")[0].src = imgKidM
+                }
+                else if(op == 'femin'){
+                    document.getElementsByTagName("img")[0].src = imgKidF
+                }
+            }
+            
+            else if(idad >= 12 & idad < 17){
+                if (op == 'masc'){
+                    document.getElementsByTagName("img")[0].src = imgAdM
+                } 
+                else if(op == 'femin'){
+                    document.getElementsByTagName("img")[0].src = imgAdF
+                } 
+            } 
+            
+            else if(idad >= 17 & idad < 33){
+                if (op == 'masc'){
+                    document.getElementsByTagName("img")[0].src = imgAdultoM
+                }
+                else if(op == 'femin'){
+                    document.getElementsByTagName("img")[0].src = imgAdultoF
+                }
+            } 
+            
+            else if(idad > 33){
+                if( op == 'masc'){
+                    document.getElementsByTagName("img")[0].src = imgIdosoM
+                }
+                else if(op == 'femin'){
+                    document.getElementsByTagName("img")[0].src = imgIdosoF
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>
